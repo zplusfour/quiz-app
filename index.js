@@ -15,7 +15,7 @@ app.get('/', async (req, res) => {
   const response = await request.json();
   let rn = Math.floor(Math.random() * response.results.length);
   const opts = response.results[rn].incorrect_answers.push(response.results[rn].correct_answer)
-  res.render("quiz", {rndm: response.results[rn], inca: response.results[rn].incorrect_answers.toString().replace(",", ", "), ca: response.results[rn].correct_answer, opts});
+  res.render("quiz", {rndm: response.results[rn], inca: response.results[rn].incorrect_answers.toString().replace(",", ", "), ca: response.results[rn].correct_answer, opts, dif: response.results[rn].difficulty});
 });
 
 app.listen(8080, () => {
