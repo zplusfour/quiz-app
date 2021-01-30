@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" />
+  <title>Quiz</title>
+</head>
+<body>
+  <div>
+    <h1><%- rndm.question %></h1>
+    <b>Options</b>: <i><%- inca %></i><br><br>
+
+    <form id="question">
+      <input type="text" name="answer" id="answer" placeholder="Your answer" /> <br><br>
+      <input type="submit" value="Submit" />
+    </form>
+
+    <div id="status" style="display: none;"></div>
+  </div>
+  <script>
+    const form = document.getElementById("question");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      let answer = document.getElementById("answer").value;
+
+      if (answer.toLowerCase() === "<%- ca.toLowerCase() %>") {
+        document.getElementById("answer").disabled = true;
+        document.getElementById("status").style.display = "block";
+        document.getElementById("status").innerHTML = "<b style=\"color: green\">You are correct! <span onclick=\"location.reload()\"><u style=\"cursor: pointer\">Refresh</u></span> to get a new question!</b>";
+      } else {
+        document.getElementById("answer").disabled = true;
+        document.getElementById("status").style.display = "block";
+        document.getElementById("status").innerHTML = "<b style=\"color: red\">Incorrect... The correct answer is: <%- ca %><br /><span onclick=\"location.reload()\"><u style=\"cursor: pointer\">Refresh</u></span> to get a new question!</b>";
+      }
+    });
+  </script>
+</body>
+</html>
